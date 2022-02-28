@@ -9,7 +9,8 @@ from xmlrpc.client import _iso8601_format
 
 class BaseModel:
     """
-    Define all common attributes/methods for other cases
+    Defining BaseModel class that define all
+    common attributes/methods for other classes
     """
 
     def __init__(self, *args, **kwargs):
@@ -31,22 +32,26 @@ class BaseModel:
 
     def __str__(self):
         """
-        String representation of a class
+        Print class name, id & dictionary
         """
         return "[BaseModel] ({}) {}".format(self.id, self.__dict__)
 
+    '''Public instance method'''
+
     def save(self):
         """
-        Saves an object to a JSON file
+        Updates the instance to the current
+        day and time
         """
         self.updated_at = datetime.now()
+
+    '''Public instance method'''
 
     def to_dict(self):
         """
         returns dictionary containing k&v
         of __dict__
         """
-
         dictionary = self.__dict__.copy()
         dictionary["__class__"] = self.__class__.__name__
         return dictionary
