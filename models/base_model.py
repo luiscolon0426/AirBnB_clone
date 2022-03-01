@@ -5,7 +5,7 @@ import uuid
 from datetime import datetime
 import json
 from xmlrpc.client import _iso8601_format
-
+import models
 
 class BaseModel:
     """
@@ -31,6 +31,8 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.utcnow()
             self.updated_at = datetime.utcnow()
+            models.storage.new(self)
+
 
     def __str__(self):
         """
@@ -46,6 +48,7 @@ class BaseModel:
         day and time
         """
         self.updated_at = datetime.utcnow()
+        models.storage.save()
 
     '''Public instance method'''
 
@@ -55,7 +58,7 @@ class BaseModel:
         of __dict__
         """
         dictionary = self.__dict__.copy()
-        dictionary["__class__"] = self.__class__.__name__
         dictionary["created_at"] = self.created_at.isoformat()
         dictionary["updated_at"] = self.updated_at.isoformat()
+        dictionary["__class__"] = self.__class__.__name__
         return dictionary
