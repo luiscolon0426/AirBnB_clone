@@ -45,8 +45,6 @@ class FileStorage:
         save_dic = {}
         with open(self.__file_path, 'w') as f:
             for key, value in self.__objects.items():
-                print(key)
-                print(value)
                 save_dic[key] = value.to_dict()
             json.dump(save_dic, f)
 
@@ -58,11 +56,10 @@ class FileStorage:
         should be raised)
         """
         load_dic = {}
-        try:
-            isFile = os.path.isfile(self.__file_path)
-            if isFile:
-                with open(self.__file_path, 'r', encoding='utf-8') as f:
-                    load = f.read()
-                    self.__objects = json.loads(load)
-        except:
-            pass
+        isFile = os.path.isfile(self.__file_path)
+        if isFile:
+            with open(self.__file_path, 'r', encoding='utf-8') as f:
+                load = f.read()
+                new_dict = json.loads(load)
+                for key, value in new_dict.items():
+                    self.__objects[key] = eval(value["__class__"])(**value)
