@@ -4,10 +4,10 @@ Class to serialize instances to a JSON file and
 deserializes JSON file to instances
 """
 
-
+import json
 from models.base_model import BaseModel
 import os
-import json
+
 
 class FileStorage:
     """
@@ -20,7 +20,6 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
-
 
     def all(self):
         """
@@ -43,6 +42,10 @@ class FileStorage:
         to the JSON file
         """
         save_dic = {}
+
+        for key, value in self.__objects.items():
+            save_dic[key] = value.to_dict()
+
         with open(self.__file_path, 'w') as f:
             for key, value in self.__objects.items():
                 save_dic[key] = value.to_dict()
