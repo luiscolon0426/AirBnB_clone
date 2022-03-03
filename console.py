@@ -5,6 +5,12 @@ contains the entry point of the command interpreter
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models.__init__ import storage
 
 
@@ -13,7 +19,15 @@ class HBNBCommand(cmd.Cmd):
     HBnB console
     """
 
-    allowed_classes = {"BaseModel"}
+    allowed_classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "Place": Place,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Review": Review
+    }
 
     prompt = "(hbnb) "
 
@@ -116,6 +130,34 @@ class HBNBCommand(cmd.Cmd):
 
         print(all_list)
 
+    def do_update(self, arg):
+        new = arg.partition(" ")
+        cl_name = new[0]
+        cl_id = new[2]
+        cl_attr = new[4]
+        cl_attr_value = new[6]
+        
+        if not cl_name:
+            print("** class name missing **")
+            return
+        
+        if cl_name not in HBNBCommand.allowed_classes:
+            print("** class doesn't exist **")
+            return
+        
+        if not cl_id:
+            print("** instance id missing **")
+            
+        if not cl_attr:
+            print("** attribute name missing **")
+            return
+        
+        if not cl_attr_value:
+            print("** value missing **")
+            return
+        
+        if cl_attr:
+            setattr(self, cl_attr, str(cl_attr_value))
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
