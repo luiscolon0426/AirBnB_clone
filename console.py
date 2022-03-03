@@ -134,28 +134,31 @@ class HBNBCommand(cmd.Cmd):
         new = arg.partition(" ")
         cl_name = new[0]
         cl_id = new[2]
-        cl_attr = new[4]
-        cl_attr_value = new[6]
-        
+        sep_id_further = cl_id.partition(" ")
+        cl_id = sep_id_further[0]
+        sep_email = sep_id_further[2].partition(" ")
+        cl_attr = sep_email[0]
+        cl_attr_value = sep_email[2]
+
         if not cl_name:
             print("** class name missing **")
             return
-        
+
         if cl_name not in HBNBCommand.allowed_classes:
             print("** class doesn't exist **")
             return
-        
+
         if not cl_id:
             print("** instance id missing **")
-            
+
         if not cl_attr:
             print("** attribute name missing **")
             return
-        
+
         if not cl_attr_value:
             print("** value missing **")
             return
-        
+
         if cl_attr:
             setattr(self, cl_attr, str(cl_attr_value))
 
