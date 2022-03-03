@@ -75,17 +75,46 @@ class HBNBCommand(cmd.Cmd):
         except KeyError:
             print("** no instance found **")
 
-        # elif arg:
-        #     show_dic = {"BaseModel": BaseModel}
-        #     instance = show_dic[arg]()
+    def do_destroy(self, arg):
+        new = arg.partition(" ")
+        cl_name = new[0]
+        cl_id = new[2]
 
-        #     line = self.parseline(arg)[0]
-        #     if not isinstance(line[1], BaseModel()):
-        #         print("** no instance found **")
+        if not cl_name:
+            print("** class name missing **")
+            return
 
-    def do_destroy(self, arg)
-    new = arg.partition(" ")
-    
+        if cl_name not in HBNBCommand.allowed_classes:
+            print("** class doesn't exist **")
+            return
+
+        if not cl_id:
+            print("** instance is missing **")
+            return
+
+        key = cl_name + "." + cl_id
+
+        try:
+            del (storage.all()[key])
+            storage.save()
+        except KeyError:
+            print("** no instance found **")
+
+    def do_all(self, arg):
+        all_list = []
+
+        if arg:
+            split = arg.split(" ")[0]
+            if arg not in HBNBCommand.allowed_classes:
+                print("** class doesn't exist **")
+                return
+            for key, value in storage._FileStorage__objects.items():
+                all_list.append(str(value))
+        else:
+            for key, value in storage._FileStorage__objects.items():
+                all_list.append(str(value))
+
+        print(all_list)
 
 
 if __name__ == '__main__':
