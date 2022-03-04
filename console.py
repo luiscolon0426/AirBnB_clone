@@ -33,25 +33,33 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """
-        exit the programm
+        exit the programm with:
+        - quit
+        - EOF
+        - Ctrl-D
         """
         return True
 
     def do_EOF(self, arg):
         """
-        exit the programm
+        exit the programm with:
+        - quit
+        - EOF
+        - Ctrl-D
         """
         return True
 
-    def emptyLine(self):
+    def emptyline(self):
         """
-        empty line
+        empty line + Enter should
+        not print/execute anything
         """
         return False
 
     def do_create(self, arg):
         """
-        creates instance
+        creates instance of allowed_classes
+        save it to json and prints the id
         """
         if len(arg) == 0:
             print("** class name missing **")
@@ -78,6 +86,10 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
 
     def do_show(self, arg):
+        """
+        prints the string rep of an instance
+        based on the class method
+        """
         new = arg.partition(" ")
         cl_name = new[0]
         cl_id = new[2]
@@ -101,6 +113,10 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg):
+        """
+        Deletes an instance specified by the user
+        and save the changes to JSON file
+        """
         new = arg.partition(" ")
         cl_name = new[0]
         cl_id = new[2]
@@ -126,6 +142,9 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, arg):
+        """
+        prints all the string rep of instance based or not in the class name
+        """
         all_list = []
 
         if arg:
@@ -142,6 +161,9 @@ class HBNBCommand(cmd.Cmd):
         print(all_list)
 
     def do_update(self, arg):
+        """
+        Updates an instance based or not in the class name
+        """
         new = arg.partition(" ")
         cl_name = new[0]
         cl_id = new[2]
