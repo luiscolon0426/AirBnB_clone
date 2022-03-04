@@ -7,6 +7,7 @@ import json
 from xmlrpc.client import _iso8601_format
 import models
 
+
 class BaseModel:
     """
     Defining BaseModel class that define all
@@ -38,7 +39,8 @@ class BaseModel:
         """
         Print class name, id & dictionary
         """
-        return "[BaseModel] ({}) {}".format(self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id,
+                                     self.__dict__)
 
     '''Public instance method'''
 

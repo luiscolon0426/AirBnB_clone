@@ -56,15 +56,26 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
 
-        elif arg != "BaseModel":
-            print("** class doesn't exist **")
-
+        elif arg == 0:
+            for key, value in HBNBCommand.allowed_classes.items():
+                if arg != key:
+                    print("** class doesn't exist **")
         elif arg:
-            create_dic = {"BaseModel": BaseModel}
-            new = create_dic[arg]()
-            print(new.id)
-            storage.new(new)
-            storage.save()
+            create_dic = {
+                "BaseModel": BaseModel,
+                "User": User,
+                "Place": Place,
+                "State": State,
+                "City": City,
+                "Amenity": Amenity,
+                "Review": Review
+            }
+            for key, value in create_dic.items():
+                if arg == key:
+                    new = create_dic[arg]()
+                    print(new.id)
+                    storage.new(new)
+                    storage.save()
 
     def do_show(self, arg):
         new = arg.partition(" ")
@@ -161,6 +172,7 @@ class HBNBCommand(cmd.Cmd):
 
         if cl_attr:
             setattr(self, cl_attr, str(cl_attr_value))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
