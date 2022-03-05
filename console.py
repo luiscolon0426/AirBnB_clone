@@ -65,10 +65,6 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
 
-        # elif arg:
-        #     for key, value in HBNBCommand.allowed_classes.items():
-        #         if arg != key:
-        #             print("** class doesn't exist **")
         elif arg:
             create_dic = {
                 "BaseModel": BaseModel,
@@ -86,9 +82,8 @@ class HBNBCommand(cmd.Cmd):
                     storage.new(new)
                     storage.save()
                     return
-                elif arg not in key:
-                    print("** class doesn't exist **")
-                    break
+            print("** class doesn't exist **")
+            return
 
     def do_show(self, arg):
         """
@@ -191,9 +186,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
         if cl_id:
-            for cl_id in storage.all().keys():
-                # if cl_id != storage.all().keys():
-                print(storage.all().keys())
+            cl_name = cl_name + "." + cl_id
+            if cl_name not in storage.all().keys():
                 print("** no instance found **")
                 return
 
