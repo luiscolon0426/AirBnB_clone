@@ -18,7 +18,6 @@ class BaseModel:
         """
         Initialize the baseModel class
         str: name of the user
-        number: id number
         """
 
         if kwargs:

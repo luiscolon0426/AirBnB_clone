@@ -4,6 +4,7 @@ contains the entry point of the command interpreter
 """
 
 import cmd
+from typing import KeysView
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -64,10 +65,10 @@ class HBNBCommand(cmd.Cmd):
         if len(arg) == 0:
             print("** class name missing **")
 
-        elif arg == 0:
-            for key, value in HBNBCommand.allowed_classes.items():
-                if arg != key:
-                    print("** class doesn't exist **")
+        # elif arg:
+        #     for key, value in HBNBCommand.allowed_classes.items():
+        #         if arg != key:
+        #             print("** class doesn't exist **")
         elif arg:
             create_dic = {
                 "BaseModel": BaseModel,
@@ -84,6 +85,10 @@ class HBNBCommand(cmd.Cmd):
                     print(new.id)
                     storage.new(new)
                     storage.save()
+                    return
+                elif arg not in key:
+                    print("** class doesn't exist **")
+                    break
 
     def do_show(self, arg):
         """
@@ -183,6 +188,14 @@ class HBNBCommand(cmd.Cmd):
 
         if not cl_id:
             print("** instance id missing **")
+            return
+
+        if cl_id:
+            for cl_id in storage.all().keys():
+                # if cl_id != storage.all().keys():
+                print(storage.all().keys())
+                print("** no instance found **")
+                return
 
         if not cl_attr:
             print("** attribute name missing **")
