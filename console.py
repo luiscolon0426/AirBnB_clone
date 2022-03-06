@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         if not cl_id:
-            print("** instance is missing **")
+            print("** instance id missing **")
             return
 
         key = cl_name + "." + cl_id
