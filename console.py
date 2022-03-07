@@ -33,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def default(self, arg):
-        """ In case command starts with <class name>.<method name>() 
+        """ In case command starts with <class name>.<method name>()
         """
         sep_arg = arg.split('.')
         if len(sep_arg) < 2:
@@ -45,7 +45,6 @@ class HBNBCommand(cmd.Cmd):
                     self.do_count(sep_arg[0])
                 elif sep_arg[1] == "all()":
                     self.do_class_name_all(sep_arg[0])
-
 
     def do_quit(self, arg):
         """
@@ -162,16 +161,18 @@ class HBNBCommand(cmd.Cmd):
         """
         all_list = []
 
-        if arg:
-            split = arg.split(" ")[0]
-            if arg not in HBNBCommand.allowed_classes:
-                print("** class doesn't exist **")
-                return
+        if len(arg) == 0:
             for key, value in storage._FileStorage__objects.items():
                 all_list.append(str(value))
         else:
-            for key, value in storage._FileStorage__objects.items():
-                all_list.append(str(value))
+            if arg:
+                if arg not in HBNBCommand.allowed_classes:
+                    print("** class doesn't exist **")
+                    return
+                else:
+                    for key, value in storage._FileStorage__objects.items():
+                        if arg in key:
+                            all_list.append(str(value))
 
         print(all_list)
 
@@ -185,7 +186,6 @@ class HBNBCommand(cmd.Cmd):
             if arg in key:
                 exclusive_class_list.append(str(value))
         print(exclusive_class_list)
-
 
     def do_update(self, arg):
         """
@@ -228,7 +228,6 @@ class HBNBCommand(cmd.Cmd):
 
         if cl_attr:
             setattr(self, cl_attr, str(cl_attr_value))
-
 
     def do_count(self, arg):
         """
