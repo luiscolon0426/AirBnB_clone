@@ -55,6 +55,14 @@ class HBNBCommand(cmd.Cmd):
                         self.do_destroy(sep_arg[0] + " " + sep_arg[1][8:-1])
                     else:
                         print("** instance id missing **")
+                elif sep_arg[1][0:6] == "update":
+                    if len(sep_arg[1]) > 8:
+                        new_sep = sep_arg[1][7:-1].split(", ")
+                        self.do_update(
+                            sep_arg[0] + " " + new_sep[0] + " " +
+                            new_sep[1] + " " + new_sep[2])
+                    else:
+                        print("** instance id missing **")
 
     def do_quit(self, arg):
         """
