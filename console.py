@@ -32,6 +32,21 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
+    def default(self, arg):
+        """ In case command starts with <class name>.<method name>() 
+        """
+        sep_arg = arg.split('.')
+        if len(sep_arg) < 2:
+            print("*** Unknown Syntax,", arg)
+            return
+        else:
+            if sep_arg[0] in HBNBCommand.allowed_classes:
+                if sep_arg[1] == "count()":
+                    self.do_count(sep_arg[0])
+                elif sep_arg[1] == "all()":
+                    self.do_class_name_all(sep_arg[0])
+
+
     def do_quit(self, arg):
         """
         exit the programm with:
@@ -160,6 +175,18 @@ class HBNBCommand(cmd.Cmd):
 
         print(all_list)
 
+    def do_class_name_all(self, arg):
+        """
+        prints all instances of a class by using:
+        <class name>.all()
+        """
+        exclusive_class_list = []
+        for key, value in storage._FileStorage__objects.items():
+            if key == arg:
+                exclusive_class_list.append(str(value))
+                print(exclusive_class_list)
+
+
     def do_update(self, arg):
         """
         Updates an instance based or not in the class name
@@ -201,6 +228,20 @@ class HBNBCommand(cmd.Cmd):
 
         if cl_attr:
             setattr(self, cl_attr, str(cl_attr_value))
+
+
+    def do_count(self, arg):
+        """
+        Retrieves instances of a class based on his ID:
+        <class name>.count()
+        """
+        if arg in HBNBCommand.allowed_classes:
+            mod = storage.all()
+            mod_num = 0
+            for key in mod.keys():
+                if arg in key:
+                    mod_num += 1
+            print(mod_num)
 
 
 if __name__ == '__main__':
