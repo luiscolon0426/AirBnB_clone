@@ -7,7 +7,7 @@
 
 ## Description
 
-Holberton **AirBnB** project, the goal its to make a copy of the AirBnB website. It doesn't have all the features, only some of them to cover all fundamental concepts of higher level programming.
+The Holberton **AirBnB** projects goal is to make a copy of the AirBnB website. It does not have all the features, only some of them to cover all fundamental concepts of higher level programming.
 
 ## Usage
 
@@ -41,7 +41,7 @@ Command | Description | Example
 
 ## \_\_init__.py
 
-Every directory listed in the AirBnB repository contains a **\_\_init__.py** file in order for the directories be identified as a package. Although some of the \_\_init__.py files may be empty others (as shown below) may contain additional coding.
+Every directory listed in the AirBnB repository contains a **\_\_init__.py** file in order to indentify the directories as packages. Although some of the \_\_init__.py files may be empty, others (as shown below) may contain additional coding.
 
 ## Models
 
@@ -51,7 +51,7 @@ File | Description | Attributes
 ---- | ----------- | ----------
 `base_model.py` | BaseModel class for all the sub-classes | `id`, `created_at`, `updated_at`
 `user.py` | User class for user information. | `email`, `password`, `first_name`, `last_name`
-`amenity.py` | Amenity class for information about amenity. | `name`
+`amenity.py` | Amenity class for information about amenities. | `name`
 `city.py` | City class for information about the city. | `state_id`, `name`
 `state.py` | State class for information about the state. | `name`
 `place.py` | Place class for details of the AirBnB apartments for rent. | `city_id`, `user_id`, `name`, `description`, `number_rooms`, `number_bathrooms`, `max_guest`, `price_by_night`, `latitude`, `longitude`, `amenity_ids`
@@ -59,7 +59,7 @@ File | Description | Attributes
 
 ## File storage
 
-The **engine/** directory handles storage(temporarily), serialization and deserialization of data, using JSON file format.
+The **engine/** directory handles storage(temporarily), serialization and deserialization of data, using the JSON file format.
 
 The class FileStorage, located in **file_storage.py**, is defined with methods to run through the following flow:
 ```<object> -> to_dict() -> <dictionary> -> JSON dump -> <json string> -> FILE -> <json string> -> JSON load -> <dictionary> -> <object>```
@@ -71,7 +71,7 @@ Attributes | Description
 
 Methods | Description
 ---- | ----------- | 
-`all` | Returns the dictionary `__onjects`.
+`all` | Returns the dictionary `__objects`.
 `new` | Sets in `__objects` the obj with key `<objClassName>.id`.
 `save` | Serializes `__objects` to the JSON file.
 `reload` | Deserializes the JSON file to `__objects`.
