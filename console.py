@@ -227,7 +227,10 @@ class HBNBCommand(cmd.Cmd):
             return
 
         if cl_attr:
-            setattr(self, cl_attr, str(cl_attr_value))
+            for key, value in storage.all().items():
+                if cl_id == value.id:
+                    setattr(value, cl_attr, str(cl_attr_value))
+                    storage.save()
 
     def do_count(self, arg):
         """
