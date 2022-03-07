@@ -182,9 +182,9 @@ class HBNBCommand(cmd.Cmd):
         """
         exclusive_class_list = []
         for key, value in storage._FileStorage__objects.items():
-            if key == arg:
+            if arg in key:
                 exclusive_class_list.append(str(value))
-                print(exclusive_class_list)
+        print(exclusive_class_list)
 
 
     def do_update(self, arg):
