@@ -45,6 +45,16 @@ class HBNBCommand(cmd.Cmd):
                     self.do_count(sep_arg[0])
                 elif sep_arg[1] == "all()":
                     self.do_class_name_all(sep_arg[0])
+                elif sep_arg[1][0:4] == "show":
+                    if len(sep_arg[1]) > 6:
+                        self.do_show(sep_arg[0] + " " + sep_arg[1][5:-1])
+                    else:
+                        print("** no instance found **")
+                elif sep_arg[1][0:7] == "destroy":
+                    if len(sep_arg[1]) > 9:
+                        self.do_destroy(sep_arg[0] + " " + sep_arg[1][8:-1])
+                    else:
+                        print("** instance id missing **")
 
     def do_quit(self, arg):
         """
