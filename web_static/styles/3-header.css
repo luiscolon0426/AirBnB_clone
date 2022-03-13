@@ -1,16 +1,16 @@
-    header {
-        align-items: center;
-        width: 100%;
-        display: flex;
-        background-color: white;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        border-bottom: 1px solid #CCCCCC;
-    }
-    
-    .logo {
-        height: 60px;
-        width: 142px;
-        padding-left: 20px;
-        background: url("../images/logo.png") no-repeat center;
-    }
+header {
+    align-items: center;
+    width: 100%;
+    display: flex;
+    background-color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.logo {
+    height: 60px;
+    width: 142px;
+    padding-left: 20px;
+    background: url("../images/logo.png") no-repeat center;
+}
