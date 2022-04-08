@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Review module for Airbnb
+Review module for Airbnb.
 """
 from models.base_model import BaseModel
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Module Users """
+""" Module Users. """
 
 from models.base_model import BaseModel
 

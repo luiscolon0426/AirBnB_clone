@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 Class to serialize instances to a JSON file and
-deserializes JSON file to instances
+deserializes JSON file to instances.
 """
 
 import json

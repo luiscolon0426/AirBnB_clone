@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Unit test for console of airbnb
+Unit test for console of airbnb.
 """
 from console import HBNBCommand
 import console

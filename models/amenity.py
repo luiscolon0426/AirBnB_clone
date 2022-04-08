@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Amenity module for Airbnb project
+Amenity module for Airbnb project.
 """
 from models.base_model import BaseModel
 

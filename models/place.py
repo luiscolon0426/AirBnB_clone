@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Place Module for Airbnb
+Place Module for Airbnb.
 """
 from models.base_model import BaseModel
 

@@ -6,6 +6,6 @@ from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """ city class with id and name """
+    """ city class with id and name. """
     state_id = ""
     name = ""
